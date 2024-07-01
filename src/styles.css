@@ -1,0 +1,144 @@
+/* CSS RESET */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+/* ACTUAL STYLING */
+
+.header-container {
+  position: relative;
+  display: flex;
+  height: 5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: burlywood;
+}
+
+.site-logo {
+  height: 100%;
+}
+
+.totalSales {
+  position: absolute;
+  right: 0;
+  padding-inline: 1rem;
+  height: 100%;
+  background-color: chocolate;
+  display: grid;
+  align-items: center;
+}
+
+.item-container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 200px 200px;
+  grid-template-areas:
+    'image history'
+    'text bidder';
+  width: calc(50% - (1rem / 2));
+  padding: 0.5rem;
+  background-color: antiquewhite;
+}
+
+.item-image-container {
+  grid-area: image;
+}
+
+.item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.text-area {
+  display: flex;
+  flex-direction: column;
+  grid-area: text;
+}
+
+.text-area p:last-of-type {
+  margin-top: auto;
+}
+
+.bidder {
+  grid-area: bidder;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 0.5rem;
+}
+
+.history {
+  grid-area: history;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.5rem;
+}
+
+.history>h2 {
+  height: 2rem;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  height: calc(100% - 2rem);
+}
+
+.history-table th, .history-table td {
+  border: 1px solid #ddd;
+  padding: 0 8px;
+  text-align: left;
+}
+
+.history-table th {
+  background-color:chocolate;
+  color: white;
+}
+
+.history-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.history-table tr:nth-child(odd) {
+  background-color: #c4c4c4;
+}
+
+.history-table tr:hover {
+  background-color: #ddd;
+}
