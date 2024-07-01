@@ -1,10 +1,10 @@
 
 # SILENT AUCTION WEB PAGE #
 
-Course: CSIS 3380-002
-Assignment: Final Group Project
-Group: 8
-Members: Alisha Alisha, Efe Awowede, Arda Kafali
+- Course: CSIS 3380-002
+- Assignment: Final Group Project
+- Group: 8
+- Members: Alisha Alisha, Efe Awowede, Arda Kafali
 
 Description:
 A web page for silent auction, where the items will be fetched from database.
