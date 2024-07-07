@@ -142,3 +142,48 @@ p, h1, h2, h3, h4, h5, h6 {
 .history-table tr:hover {
   background-color: #ddd;
 }
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: antiquewhite;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: chocolate;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: chocolate;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: burlywood;
+}
+
+.message {
+  color: red;
+  text-align: center;
+}

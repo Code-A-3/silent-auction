@@ -13,7 +13,7 @@ function Item(props){
                 <p><strong>Desription: </strong>{props.item.description}</p>
                 <p><strong>Minimum Bid: </strong>{props.item.minPrice}</p>
             </div>
-            <Bidder addBid={props.addBid} itemId={props.item.id} />
+            <Bidder addBid={props.addBid} itemId={props.item.id} bidderId={props.bidderId}/>
             <History bids={props.item.bids} />
         </div>
     )
