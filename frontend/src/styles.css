@@ -25,11 +25,37 @@ p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
 #root, #__next {
   isolation: isolate;
 }
 
 /* ACTUAL STYLING */
+
+html {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+a{
+  text-decoration: underline;
+}
+
+a:hover, a:focus-visible {
+  color: #c4c4c4;
+}
 
 .header-container {
   position: relative;
@@ -38,6 +64,10 @@ p, h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
   background-color: burlywood;
+}
+
+.header-container > a {
+  height: inherit;
 }
 
 .site-logo {
@@ -64,10 +94,10 @@ p, h1, h2, h3, h4, h5, h6 {
 .item {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 200px 200px;
+  grid-template-rows: 200px 70px;
   grid-template-areas:
-    'image history'
-    'text bidder';
+    'image description'
+    'minimum bid';
   width: calc(50% - (1rem / 2));
   padding: 0.5rem;
   background-color: antiquewhite;
@@ -84,30 +114,29 @@ p, h1, h2, h3, h4, h5, h6 {
   object-position: center;
 }
 
-.text-area {
+.description {
   display: flex;
   flex-direction: column;
-  grid-area: text;
+  grid-area: description;
+  padding: 0 0.5rem;
 }
 
-.text-area p:last-of-type {
-  margin-top: auto;
-}
-
-.bidder {
-  grid-area: bidder;
+.bid {
+  grid-area: bid;
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
   padding: 0 0.5rem;
 }
 
-.history {
-  grid-area: history;
+.minimum {
+  display: flex;
+  grid-area: minimum;
   width: 100%;
   height: 100%;
   padding: 0 0.5rem;
+  align-items: center;
 }
 
 .history>h2 {
@@ -141,4 +170,49 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .history-table tr:hover {
   background-color: #ddd;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: antiquewhite;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.login-form input:focus {
+  outline: none;
+  border-color: chocolate;
+}
+
+.login-form button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: chocolate;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: burlywood;
+}
+
+.message {
+  color: red;
+  text-align: center;
 }
