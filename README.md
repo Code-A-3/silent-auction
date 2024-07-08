@@ -23,12 +23,12 @@ DETAILS:
 
 API ENDPOINTS:
 -----------------------------------------
-GET /items --> gives all items in auction
-POST /items --> add a new item
-GET /items/:id --> gives a specific item with more details
-PATCH /items/:id --> adds a new bid to a specific item
-DELETE /items/:id --> delete an item
-POST /user --> sign up new account
+GET /items --> gives all items in auction<br>
+POST /items --> add a new item<br>
+GET /items/:id --> gives a specific item with more details<br>
+PATCH /items/:id --> adds a new bid to a specific item<br>
+DELETE /items/:id --> delete an item<br>
+POST /user --> sign up new account<br>
 GET /user --> login
 
 
