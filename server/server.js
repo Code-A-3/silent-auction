@@ -1,7 +1,8 @@
 // GET REQUIREMENTS
 import express from 'express';
 import dotenv from 'dotenv';
-import itemsRouter from './routes/itemsRouter.js'
+import itemsRouter from './routes/itemsRouter.js';
+import userRouter from './routes/userRouter.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
@@ -35,16 +36,15 @@ app.use(cors());
 
 // A basic logger
 app.use((req, res, next)=>{
-    console.log(`New Request= Path: "${req.path}", Method: ${req.method}`);
+    console.log(`New Request: Path= "${req.path}", Method= ${req.method}`);
     next();
 });
 
 
 // ROUTES
 app.use('/items', itemsRouter);
-
+app.use('/user', userRouter);
 app.get('/', (req, res)=>{
-    console.log(process.env.MONGO_CONNECTION_STRING);
     res.redirect('/items');
 });
 

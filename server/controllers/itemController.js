@@ -30,6 +30,30 @@ const getItem = async (req,res)=>{
 // Create new item
 const createItem = async (req,res)=>{
     const {title, description, minBid, image} = req.body;
+
+    let emptyFields = []
+    if(!title) {
+        emptyFields.push('Title');
+    }
+    if(!description) {
+        emptyFields.push('Description');
+    }
+    if(!minBid) {
+        emptyFields.push('Minimum Bid');
+    }
+    else if (isNaN(minBid) || minBid < 0) {
+        emptyFields.push('Minimum Bid');
+    }
+    if(!image) {
+        emptyFields.push('Image URL');
+    }
+
+    if(emptyFields.length > 0) {
+        return res.status(400).json({error: `Please fill the ${
+            emptyFields.map(field=>{return  ' ' + field})
+        } field(s) properly`})
+    }
+
     try {
         await ItemModel.create({title, description, minBid, image});
         res.status(200).json({message: 'New item created.'});

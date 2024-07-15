@@ -1,8 +1,11 @@
+
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 function Item(props) {
     const [showModal, setShowModal] = useState(false);
+    const navigate = useNavigate();
 
     const handleViewAllClick = () => {
         setShowModal(true);
@@ -11,6 +14,10 @@ function Item(props) {
     const handleCloseModal = () => {
         setShowModal(false);
     };
+
+    const handleDelete = () => {
+        props.onDelete(props.item._id, props.item.title);
+    }
 
     return (
         <div className="card">
@@ -33,6 +40,9 @@ function Item(props) {
                 <button onClick={handleViewAllClick} className="view-all-button">
                     <h3>View Bids</h3>
                 </button>
+                <button onClick={handleDelete} className="delete-button">
+                    <img src="./delete.png" alt="Delete"/>
+                </button>
             </div>
 
             {showModal && (
@@ -44,7 +54,8 @@ function Item(props) {
                             <ul>
                                 {props.item.bidHistory.map((bid, index) => (
                                     <li key={index}>
-                                        <strong>{bid.username}</strong>: ${bid.amount}
+                                        {/* in below line, bid.username is fixed as bid.bidder. It shows the bidder name in poop-up box now. */}
+                                        <strong>{bid.bidder}</strong>: ${bid.amount}
                                     </li>
                                 ))}
                             </ul>

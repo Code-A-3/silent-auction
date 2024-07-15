@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../components/Header.jsx";
-import "../styles.css"; // Import the CSS file
+// CSS import is removed as it is being handled in app.jsx
 import Footer from "../components/Footer.jsx";
 
 function About() {

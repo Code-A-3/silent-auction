@@ -16,6 +16,7 @@ function Header(props) {
                 <nav className="header-links">
                     <NavLink to="/about">About</NavLink>
                     <NavLink to="/">Items</NavLink>
+                    <NavLink to="/add">Add Item</NavLink>
                     <NavLink to="/login">Login</NavLink>
                 </nav>
             )}

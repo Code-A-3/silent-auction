@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom"; // Import NavLink for routing if needed
-import "../styles.css"; // Make sure to import your CSS file
+// CSS import is removed as it is being handled in app.jsx
 
 function AboutAuction() {
   const currentProgress = 50000;

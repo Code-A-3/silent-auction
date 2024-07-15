@@ -7,15 +7,28 @@ import Footer from '../components/Footer.jsx';
 function Home(props) {
     const [items, setItems] = useState(null);
 
+    const fetchItems = async () => {
+        await fetch('http://localhost:3000/items')
+            .then(response => response.json())
+            .then(data => setItems(data))
+            .catch(error => alert(error));
+    };
+
     useEffect(() => {
-        const fetchItems = async () => {
-            await fetch('http://localhost:3000/items')
-                .then(response => response.json())
-                .then(data => setItems(data))
-                .catch(error => console.log('Error fetching data: ', error));
-        };
         fetchItems();
     }, []);
+
+    const handleDelete = async (itemId, itemTitle) => {
+        const response = await fetch('http://localhost:3000/items/' + itemId, {
+            method: "DELETE",
+        })
+        const responseJson = await response.json();
+        if (!response.ok) {
+            return alert(responseJson.error);
+        }
+        alert(`"${itemTitle}" is deleted from auction`);
+        fetchItems();
+    }
 
     return (
         <>
@@ -24,7 +37,7 @@ function Home(props) {
                 <AboutAuction />
                 <div className='items-container'>
                     {items && items.map(item => (
-                        <Item key={item._id} item={item} />
+                        <Item key={item._id} item={item} onDelete={handleDelete} />
                     ))}
                 </div>
             </main>
