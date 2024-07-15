@@ -53,9 +53,11 @@ PROGRESS:
 - SERVER is created (EXPRESS)
 - FRONTEND is created (REACT)
 - DATABASE is created on Mongodb Atlas Cloud
-- App is serving all and individual auction items as intended.
+- App is serving all and individual auction items as intended.<br>
+
 (14.07.2024):<br>
-- Implemented frontend with React
+- Implemented frontend with React<br>
+
 (15.07.2024):<br>
 - ADD Item / DELETE Item functionality is added
 - User model created
