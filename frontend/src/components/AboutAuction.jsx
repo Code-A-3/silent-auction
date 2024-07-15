@@ -1,0 +1,46 @@
+import React from "react";
+import { NavLink } from "react-router-dom"; // Import NavLink for routing if needed
+import "../styles.css"; // Make sure to import your CSS file
+
+function AboutAuction() {
+  const currentProgress = 50000;
+  const goal = 120000;
+  const progressPercent = (currentProgress / goal) * 100;
+
+  return (
+    <div>
+      <div className="hero">
+        <img src="\hero_image.jpeg" alt="Auction Event" />
+      </div>
+      <div className="about-section">
+        <h2>About this Auction</h2>
+        <p>
+          Embark on a journey of generosity at our virtual Summer Charity Gala
+          Silent Auction, hosted on the cutting-edge Silent Auction platform.
+          Delight in bidding on extraordinary luxury getaways, captivating art
+          pieces, and exclusive dining experiences, all to champion this
+          impactful mission. Experience the thrill of real-time bidding updates
+          and seamless transactions, all while supporting a cause that truly
+          matters. Do not miss your chance to secure unique treasures and
+          contribute to our goal—join us for an unforgettable evening of giving
+          and community.
+        </p>
+        <div className="progress-bar-container">
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${progressPercent}%` }}
+            ></div>
+          </div>
+          <p>
+            Progress: {currentProgress} / {goal}
+          </p>
+          <NavLink to="/join-auction">Join Auction</NavLink>{" "}
+          {/* Adjust routing link as necessary */}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default AboutAuction;

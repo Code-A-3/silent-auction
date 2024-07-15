@@ -16,12 +16,13 @@ const app = express();
 
 // CONNECT TO MONGO DB
 mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO_DB_PASS}@silentauction.qwx3zds.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority&appName=SilentAuction`)
- .then(()=>{
+ .then(() => {
     console.log('DB connected.');
-})
-.catch((err)=>{
-    console.log(`Cannot connect DB: ${err.message}`);
-});
+ })
+ .catch((err) => {
+    console.error(`Cannot connect DB: ${err.message}`);
+ });
+
 
 
 // MIDDLEWARES
