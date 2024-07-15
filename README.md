@@ -73,4 +73,14 @@ PROGRESS (07.07.2024):
 - create 'components' folder
 - create components to be used in page templates into components folder
 - create 'useEffect' functions in page files to fetch data from backend
-- 
+
+PROGRESS (14.07.2024):
+-----------------------------------------
+- Implemented frontend with React
+
+TO-DO (14.07.2024):
+-----------------------------------------
+- Implement Progress Bar Target and Goal
+- Add Team Member Images
+- Improve frontend design and UX
+
