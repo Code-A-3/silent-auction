@@ -30,8 +30,9 @@ POST /items --> add a new item (allowed to administrative users only)<br>
 GET /items/:id --> gives a specific item with more details<br>
 PATCH /items/:id --> adds a new bid to a specific item (allowed only if logged in)<br>
 DELETE /items/:id --> delete an item (allowed to administrative users only)<br>
-POST /user --> sign up new account<br>
-GET /user --> login
+POST /user/register --> sign up new account<br>
+POST /user/login --> login<br>
+POST /user/logout --> logout
 
 
 TO-DO (15.07.2024):
