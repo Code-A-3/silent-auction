@@ -36,14 +36,12 @@ GET /user --> login
 
 TO-DO (15.07.2024):
 -----------------------------------------
-- login procedure in backend (by the registered users)
-- implement JWT
-- check admin authorization for certain buttons/actions/pages
+- check auth/admin authorization for needed backend functions (like add, delete)
+- implement Make a Bid functionality
 - try to add bidding deadline
 - Implement Progress Bar Target and Goal
 - Add Team Member Images
 - Improve frontend design and UX
-- Bind ADD and DELETE to admins only
 
 
 PROGRESS:
@@ -62,6 +60,9 @@ PROGRESS:
 - ADD Item / DELETE Item functionality is added
 - User model created
 - Registeration is implemented with password encryption
+- JWT is implemented to save session
+- cookie operations implemented to save authentication
+- all pages are showing different UI based on authhentication status and admin status
 
 
 

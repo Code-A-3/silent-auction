@@ -25,14 +25,18 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
  });
 
 
-
 // MIDDLEWARES
 
 // To read the request body
 app.use(express.json());
 
 // To fix CORS issue
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    credentials: true
+};
+app.use(cors(corsOptions));
+// app.use(cors());
 
 // A basic logger
 app.use((req, res, next)=>{

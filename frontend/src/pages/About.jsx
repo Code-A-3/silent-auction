@@ -3,10 +3,10 @@ import Header from "../components/Header.jsx";
 // CSS import is removed as it is being handled in app.jsx
 import Footer from "../components/Footer.jsx";
 
-function About() {
+function About(props) {
   return (
     <>
-      <Header />
+      <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck} />
       <div className="hero">
         <img src="\hero_image.jpeg" alt="Auction Event" />
       </div>

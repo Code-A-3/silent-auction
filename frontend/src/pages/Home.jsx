@@ -32,12 +32,12 @@ function Home(props) {
 
     return (
         <>
-            <Header total={props.total} />
+            <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck}/>
             <main> {/* Add this wrapper */}
                 <AboutAuction />
                 <div className='items-container'>
                     {items && items.map(item => (
-                        <Item key={item._id} item={item} onDelete={handleDelete} />
+                        <Item key={item._id} item={item} onDelete={handleDelete}  auth={props.auth} admin={props.admin}/>
                     ))}
                 </div>
             </main>

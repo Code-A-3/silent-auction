@@ -19,17 +19,21 @@ const userSchema = new Schema({
     }
 });
 
-// Static register method
+// Static register method (arrow function won't work as we use "this" keyword)
 userSchema.statics.register = async function (userName, password) {
-    const exists = await this.findOne({userName});
-    if (exists){
-        throw Error('Username already exists');
+    if (!userName){
+        throw Error('Username cannot be blank');
     }
     if (!password){
         throw Error('Password cannot be blank');
     }
     if (password.length < 3){
         throw Error('Password cannot be less than 3 characters');
+    }
+
+    const exists = await this.findOne({userName});
+    if (exists){
+        throw Error('Username already exists');
     }
 
     // generate salt and hass the password
@@ -39,6 +43,29 @@ userSchema.statics.register = async function (userName, password) {
     // create user in DB
     const user = await this.create({userName, password: passwordHash});
 
+    return user;
+}
+
+// Static login method (arrow function won't work as we use "this" keyword)
+userSchema.statics.login = async function (userName, password) {
+    if (!userName){
+        throw Error('Username cannot be blank');
+    }
+    if (!password){
+        throw Error('Password cannot be blank');
+    }
+
+    // find user
+    const user = await this.findOne({userName});
+    if(!user){
+        throw Error('User not found');
+    }
+
+    // confirm password
+    const comparision = await bcrypt.compare(password, user.password);
+    if (!comparision){
+        throw Error('Wrong credentials');
+    }
     return user;
 }
 

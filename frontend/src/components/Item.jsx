@@ -34,15 +34,22 @@ function Item(props) {
                 )}
             </div>
             <div className="card-actions">
-                <NavLink to="/login" className="bid-button">
-                    <h3>Login to Bid</h3>
-                </NavLink>
+                {!props.auth ? 
+                    <NavLink to="/login" className="bid-button">
+                        <h3>Login to Bid</h3>
+                    </NavLink> : 
+                    <NavLink to="/bidddd" className="bid-button">
+                        <h3>Make a Bid</h3>
+                    </NavLink>
+                }
+                
                 <button onClick={handleViewAllClick} className="view-all-button">
                     <h3>View Bids</h3>
                 </button>
-                <button onClick={handleDelete} className="delete-button">
+                {props.admin && <button onClick={handleDelete} className="delete-button">
                     <img src="./delete.png" alt="Delete"/>
                 </button>
+                }
             </div>
 
             {showModal && (

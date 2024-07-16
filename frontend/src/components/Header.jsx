@@ -1,7 +1,25 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import '../styles.css'; 
 
 function Header(props) {
+
+    const navigate = useNavigate();
+
+    const handleLogout = async ()=>{
+        try {
+            const response = await fetch('http://localhost:3000/user/logout', {
+                method: 'POST',
+                credentials: 'include'
+            });
+            if (response.ok) {
+                props.runCheck();
+                navigate('/');
+            }
+        } catch (error) {
+            
+        }
+    };
+
     return (
         <header className="header-container">
             <NavLink to="/">
@@ -16,8 +34,9 @@ function Header(props) {
                 <nav className="header-links">
                     <NavLink to="/about">About</NavLink>
                     <NavLink to="/">Items</NavLink>
-                    <NavLink to="/add">Add Item</NavLink>
-                    <NavLink to="/login">Login</NavLink>
+                    {props.admin && <NavLink to="/add">Add Item</NavLink>}
+                    
+                    {!props.auth ? <NavLink to="/login">Login</NavLink> : <button className='logout-button' onClick={handleLogout}>Logout</button>}
                 </nav>
             )}
         </header>

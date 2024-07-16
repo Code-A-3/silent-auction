@@ -6,7 +6,7 @@ function AddItem(props) {
 
   return (
     <>
-      <Header />
+      <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck} />
       <ItemForm />
       <Footer />
     </>

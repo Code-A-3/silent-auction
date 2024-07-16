@@ -1,20 +1,60 @@
+
 import UserModel from '../models/userModel.js';
+import jwt from 'jsonwebtoken';
+
+// Token creator
+const createToken = (_id, userName, admin) => {
+    return jwt.sign({_id: _id, userName: userName, admin: admin}, process.env.JWT_SECRET, {expiresIn:'1d'});
+}
 
 // Login User
 const loginUser = async (req,res) => {
-    res.json({message: 'login message'});
-}
-
-
-// Register user
-const registerUser = async (req,res) => {
     const {userName, password} = req.body;
     try {
-        const user = await UserModel.register(userName, password);
+        const user = await UserModel.login(userName, password);
+        const admin = user.admin;
+        const token = createToken(user._id, user.userName, admin);
+        const expireDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        res.cookie('token', token, { 
+            httpOnly: false, 
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'Strict',
+            expires: expireDate
+        });
         res.status(200).json({userName});
     } catch (error) {
         res.status(400).json({error: error.message});
     }
 }
 
-export {loginUser, registerUser};
+// Register user
+const registerUser = async (req,res) => {
+    const {userName, password} = req.body;
+    try {
+        const user = await UserModel.register(userName, password);
+        const admin = user.admin;
+        const token = createToken(user._id, user.userName, admin);
+        const expireDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
+        res.cookie('token', token, { 
+            httpOnly: false, 
+            secure: process.env.NODE_ENV === 'production', 
+            sameSite: 'Strict',
+            expires: expireDate
+        });
+        res.status(200).json({userName});
+    } catch (error) {
+        res.status(400).json({error: error.message});
+    }
+}
+
+// Logout user
+const logoutUser = (req,res)=>{
+    res.clearCookie('token', {
+        httpOnly: false, 
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: 'Strict',
+    });
+    res.status(200).json({message: "Logged out..."});
+}
+
+export {loginUser, registerUser, logoutUser};
