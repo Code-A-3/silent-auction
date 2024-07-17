@@ -1,6 +1,6 @@
-
 import UserModel from '../models/userModel.js';
 import jwt from 'jsonwebtoken';
+
 
 // Token creator
 const createToken = (_id, userName, admin) => {
@@ -9,6 +9,7 @@ const createToken = (_id, userName, admin) => {
 
 // Login User
 const loginUser = async (req,res) => {
+
     const {userName, password} = req.body;
     try {
         const user = await UserModel.login(userName, password);
@@ -16,7 +17,7 @@ const loginUser = async (req,res) => {
         const token = createToken(user._id, user.userName, admin);
         const expireDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
         res.cookie('token', token, { 
-            httpOnly: false, 
+            httpOnly: false,
             secure: process.env.NODE_ENV === 'production', 
             sameSite: 'Strict',
             expires: expireDate

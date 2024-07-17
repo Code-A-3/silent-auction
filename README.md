@@ -17,7 +17,7 @@ DETAILS:
 - When a logged in user bids, backend checks if the bid is proper or not (bigger than last bid etc...). If confirmed, the new bid will be registered to the bidding history of that specific item.
 - When an admin creates a new auction item, backend controls all the input fields and adds the item if all fields are proper.
 - All items have their own bidding history in the database.
-- Only administrative users can add new items to database (when logged in as admin, you can see Add Item button, and tehre is a privilege control in the back end too)
+- Only administrative users can add new items to database (when logged in as admin, you can see Add Item button, and there is a privilege control in the back end too)
 - The total amount of all bids is shown in the hero section as a progress bar.
 - The /item urls are related to items API.
 - The /user urls are related to authentication, sign up, login API.
@@ -28,7 +28,7 @@ API ENDPOINTS:
 GET /items --> gives all items in auction<br>
 POST /items --> add a new item (allowed to administrative users only)<br>
 GET /items/:id --> gives a specific item with more details<br>
-PATCH /items/:id --> adds a new bid to a specific item (allowed only if logged in)<br>
+PUT /items/:id --> adds a new bid to a specific item (allowed only if logged in)<br>
 DELETE /items/:id --> delete an item (allowed to administrative users only)<br>
 POST /user/register --> sign up new account<br>
 POST /user/login --> login<br>
@@ -37,10 +37,7 @@ POST /user/logout --> logout
 
 TO-DO (15.07.2024):
 -----------------------------------------
-- check auth/admin authorization for needed backend functions (like add, delete)
-- implement Make a Bid functionality
 - try to add bidding deadline
-- Implement Progress Bar Target and Goal
 - Add Team Member Images
 - Improve frontend design and UX
 
@@ -63,7 +60,9 @@ PROGRESS:
 - Registeration is implemented with password encryption
 - JWT is implemented to save session
 - cookie operations implemented to save authentication
-- all pages are showing different UI based on authhentication status and admin status
+- all pages are showing different UI based on authhentication status and admin status<br>
 
-
-
+(16.07.2024):<br>
+- API endpoints are secured with authentication and authorization checks<br>
+- adding new bid procedure is implemented<br>
+- progress bar is implemented<br>

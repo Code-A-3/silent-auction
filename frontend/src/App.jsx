@@ -18,7 +18,6 @@ function App() {
   const [admin, setAdmin] = useState(false);
 
   const checkToken = ()=>{
-    console.log('check');
     const token = Cookies.get('token');
     if (token) {
       setAuth(true);
@@ -35,6 +34,32 @@ function App() {
     }
   };
 
+  const handleSendBid = async (_id, bidAmount) => {
+    const token = Cookies.get('token');
+    console.log(token);
+    if (token) {
+      try {
+          const decoded = jwtDecode(token);
+          const activeUser = decoded.userName;
+          const details = {user: activeUser, amount: bidAmount};
+          const response = await fetch('http://localhost:3000/items/' + _id, {
+              method: "PUT",
+              body: JSON.stringify(details),
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              credentials: 'include'
+          })
+          const responseJson = await response.json();
+          if (!response.ok) {
+              return alert(responseJson.error);
+          }
+      } catch (error) {
+          alert(error.message);
+      }
+    }
+  }
+
   useEffect(()=>{
     checkToken();
   }, []);
@@ -42,7 +67,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home auth={auth} admin={admin} runCheck={checkToken} />} />
+        <Route path='/' element={<Home auth={auth} admin={admin} runCheck={checkToken} onBid={handleSendBid} />} />
         <Route path='/login' element={<Login auth={auth} admin={admin} runCheck={checkToken} />} />
         <Route path='/register' element={<Register auth={auth} admin={admin} runCheck={checkToken} />} />
         <Route path='/about' element={<About auth={auth} admin={admin} runCheck={checkToken} />} />

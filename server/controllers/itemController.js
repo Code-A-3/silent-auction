@@ -1,4 +1,6 @@
 import ItemModel from '../models/itemModel.js';
+import requireAuth from '../middlewares/reqAuth.js';
+import requireAdmin from '../middlewares/reqAdmin.js';
 
 // Get all items
 const getItems = async (req,res)=>{
@@ -29,41 +31,48 @@ const getItem = async (req,res)=>{
 
 // Create new item
 const createItem = async (req,res)=>{
-    const {title, description, minBid, image} = req.body;
-
-    let emptyFields = []
-    if(!title) {
-        emptyFields.push('Title');
-    }
-    if(!description) {
-        emptyFields.push('Description');
-    }
-    if(!minBid) {
-        emptyFields.push('Minimum Bid');
-    }
-    else if (isNaN(minBid) || minBid < 0) {
-        emptyFields.push('Minimum Bid');
-    }
-    if(!image) {
-        emptyFields.push('Image URL');
-    }
-
-    if(emptyFields.length > 0) {
-        return res.status(400).json({error: `Please fill the ${
-            emptyFields.map(field=>{return  ' ' + field})
-        } field(s) properly`})
-    }
-
     try {
-        await ItemModel.create({title, description, minBid, image});
-        res.status(200).json({message: 'New item created.'});
+        requireAuth(req,res);
+        requireAdmin(req,res);
+        const {title, description, minBid, image} = req.body;
+    
+        let emptyFields = []
+        if(!title) {
+            emptyFields.push('Title');
+        }
+        if(!description) {
+            emptyFields.push('Description');
+        }
+        if(!minBid) {
+            emptyFields.push('Minimum Bid');
+        }
+        else if (isNaN(minBid) || minBid < 0) {
+            emptyFields.push('Minimum Bid');
+        }
+        if(!image) {
+            emptyFields.push('Image URL');
+        }
+    
+        if(emptyFields.length > 0) {
+            return res.status(400).json({error: `Please fill the ${
+                emptyFields.map(field=>{return  ' ' + field})
+            } field(s) properly`})
+        }
+    
+        try {
+            await ItemModel.create({title, description, minBid, image});
+            res.status(200).json({message: 'New item created.'});
+        } catch (error) {
+            res.status(400).json({error: `Error during creating new item: ${error.message}`});
+        };
     } catch (error) {
-        res.status(400).json({error: `Error during creating new item: ${error.message}`});
-    };
+        res.status(401).json({error: error.message});
+    }
 };
 
 // Add new bid to an item
 const addBid = async (req,res)=>{
+    await requireAuth(req,res);
     const {id} = req.params;
     const {user, amount} = req.body;
     if (!id || !user || !amount || isNaN(amount)) {
@@ -84,6 +93,7 @@ const addBid = async (req,res)=>{
         if (error.name == 'CastError') {
             return res.status(404).json({error: 'Item not found'});
         }
+        console.log('5');
         res.status(400).json({error: `Error fetching item: ${error.message}`});
     }
     const bid = {amount: amount, bidder: user}
@@ -103,6 +113,8 @@ const addBid = async (req,res)=>{
 
 // Delete item
 const deleteItem = async (req,res)=>{
+    requireAuth(req,res);
+    requireAdmin(req,res);
     const {id} = req.params;
     try {
         const item = await ItemModel.findByIdAndDelete(id);

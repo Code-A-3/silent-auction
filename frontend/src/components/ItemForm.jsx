@@ -23,7 +23,8 @@ function ItemForm() {
             body: JSON.stringify(tempItem),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'
         })
         const newItemJson = await newItem.json();
         if (!newItem.ok) {

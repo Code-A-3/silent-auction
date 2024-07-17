@@ -2,9 +2,9 @@ import React from "react";
 import { NavLink } from "react-router-dom"; // Import NavLink for routing if needed
 // CSS import is removed as it is being handled in app.jsx
 
-function AboutAuction() {
-  const currentProgress = 50000;
-  const goal = 120000;
+function AboutAuction(props) {
+  const currentProgress = props.total;
+  const goal = 5000;
   const progressPercent = (currentProgress / goal) * 100;
 
   return (
@@ -35,8 +35,9 @@ function AboutAuction() {
           <p>
             Progress: {currentProgress} / {goal}
           </p>
-          <NavLink to="/join-auction">Join Auction</NavLink>{" "}
-          {/* Adjust routing link as necessary */}
+          {!props.auth && (
+            <NavLink className="join-auction-button" to="/login">Login to Join Auction</NavLink>
+          )}
         </div>
       </div>
     </div>

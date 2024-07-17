@@ -5,7 +5,18 @@ import {useNavigate} from 'react-router-dom';
 
 function Item(props) {
     const [showModal, setShowModal] = useState(false);
+    const [showBidMenu, setShowBidMenu] = useState(false);
+    const [newBid, setNewBid] = useState(props.item.bidHistory[0] ? (props.item.bidHistory[0].amount + 1) : props.item.minBid);
     const navigate = useNavigate();
+
+
+    const handleShowBidMenu = () => {
+        setShowBidMenu(true);
+    }
+
+    const handleCloseBidMenu = () => {
+        setShowBidMenu(false);
+    }
 
     const handleViewAllClick = () => {
         setShowModal(true);
@@ -17,6 +28,13 @@ function Item(props) {
 
     const handleDelete = () => {
         props.onDelete(props.item._id, props.item.title);
+    }
+
+    const handleSendBid = (e) => {
+        e.preventDefault();
+        props.onBid(props.item._id, newBid);
+        handleCloseBidMenu();
+        setNewBid(props.item.bidHistory[0] ? (props.item.bidHistory[0].amount + 1) : props.item.minBid)
     }
 
     return (
@@ -38,9 +56,9 @@ function Item(props) {
                     <NavLink to="/login" className="bid-button">
                         <h3>Login to Bid</h3>
                     </NavLink> : 
-                    <NavLink to="/bidddd" className="bid-button">
+                    <button onClick={handleShowBidMenu} className="view-all-button">
                         <h3>Make a Bid</h3>
-                    </NavLink>
+                    </button>
                 }
                 
                 <button onClick={handleViewAllClick} className="view-all-button">
@@ -59,7 +77,7 @@ function Item(props) {
                         <h2>Bid History</h2>
                         {props.item.bidHistory.length > 0 ? (
                             <ul>
-                                {props.item.bidHistory.map((bid, index) => (
+                                {props.item.bidHistory.slice(0, 5).map((bid, index) => (
                                     <li key={index}>
                                         {/* in below line, bid.username is fixed as bid.bidder. It shows the bidder name in poop-up box now. */}
                                         <strong>{bid.bidder}</strong>: ${bid.amount}
@@ -72,8 +90,33 @@ function Item(props) {
                     </div>
                 </div>
             )}
+
+            {showBidMenu && (
+                <div className="modal">
+                    <div className="modal-content">
+                        <span className="close-button" onClick={handleCloseBidMenu}>&times;</span>
+                        <h2>Make a Bid</h2>
+                        <form onSubmit={handleSendBid}>
+                            <label className="label" htmlFor="amount">Amount:</label>
+                            <input
+                                id="amount"
+                                type="number"
+                                value={newBid}
+                                onChange={(e) => setNewBid(e.target.value)}
+                                className="input"
+                                placeholder="Enter Bid amount"
+                            />
+                            <button type='submit' className="submit-button">
+                                Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
         </div>
     );
 }
 
 export default Item;
+

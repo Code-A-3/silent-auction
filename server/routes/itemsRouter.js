@@ -2,6 +2,7 @@
 import Router from 'express';
 import {createItem, getItems, getItem, deleteItem, addBid} from '../controllers/itemController.js';
 
+
 // INITIATE ROUTER
 const itemsRouter = Router();
 
@@ -15,7 +16,7 @@ itemsRouter.post('/', createItem);
 itemsRouter.get('/:id', getItem);
 
 // PATCH a new bid to an item
-itemsRouter.patch('/:id', addBid);
+itemsRouter.put('/:id', addBid);
 
 // DELETE an item
 itemsRouter.delete('/:id', deleteItem);

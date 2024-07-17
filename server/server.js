@@ -5,6 +5,7 @@ import itemsRouter from './routes/itemsRouter.js';
 import userRouter from './routes/userRouter.js';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 
 
 // INITIATE .env USAGE
@@ -26,6 +27,9 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 
 
 // MIDDLEWARES
+
+// To read cookies
+app.use(cookieParser());
 
 // To read the request body
 app.use(express.json());
