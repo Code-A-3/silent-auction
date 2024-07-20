@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom"; // Import NavLink for routing if needed
 // CSS import is removed as it is being handled in app.jsx
 

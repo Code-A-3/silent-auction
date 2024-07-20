@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/Header.jsx";
 // CSS import is removed as it is being handled in app.jsx
 import Footer from "../components/Footer.jsx";
@@ -12,7 +11,7 @@ function About(props) {
       </div>
       <div className="about-container">
         <div className="about-section">
-          <h1>About Silent Auction</h1>
+          <h2>About Us</h2>
           <p>
             Welcome to the Silent Auction website, your premier destination for
             online auctions that bring together enthusiasts, collectors, and
@@ -41,21 +40,21 @@ function About(props) {
           </p>
         </div>
         <div className="team-section">
-          <h1>Our Team</h1>
+          <h2>Our Team</h2>
           <div className="team-members">
             <div className="team-member">
               <img src="/favicon-trans.png" alt="Arda Kafali" className="team-photo" />
-              <h2>Arda Kafali</h2>
+              <h3>Arda Kafali</h3>
               <p>Arda is a software developer with a passion for creating seamless user experiences. He oversees the technical development of the platform.</p>
             </div>
             <div className="team-member">
               <img src="/favicon-trans.png" alt="Alisha Buttar" className="team-photo" />
-              <h2>Alisha Buttar</h2>
+              <h3>Alisha Buttar</h3>
               <p>Alisha is our project manager, ensuring that all aspects of the auction process run smoothly. She is dedicated to supporting our mission.</p>
             </div>
             <div className="team-member">
               <img src="/favicon-trans.png" alt="Efe Awowede" className="team-photo" />
-              <h2>Efe Awowede</h2>
+              <h3>Efe Awowede</h3>
               <p>Efe is a designer with a keen eye for detail, responsible for the visual elements of the platform, ensuring an intuitive and engaging user interface.</p>
             </div>
           </div>

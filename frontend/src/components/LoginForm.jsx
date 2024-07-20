@@ -47,7 +47,7 @@ function LoginForm(props) {
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 className="input"
-                placeholder="Enter your userName"
+                placeholder="Enter Your Username"
             />
         </div>
         <div className="formGroup">
@@ -58,14 +58,14 @@ function LoginForm(props) {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="input"
-                placeholder="Enter your password"
+                placeholder="Enter Your Password"
             />
         </div>
         <button type="submit" className="button">
             Login
         </button>
         <button type="button" className="button" onClick={handleRegisterClick}>
-            Or Register
+            Register
         </button>
         </form>
         </div>
