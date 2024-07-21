@@ -131,7 +131,7 @@ a:focus-visible {
 
 .card-actions {
   display: flex;
-  padding: 1rem;
+
   text-align: center;
   justify-content: center;
   border-bottom-left-radius: 12px;
@@ -512,6 +512,11 @@ a:focus-visible {
   max-width: 600px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content li{
+  text-align: justify;
+  list-style-type:decimal
 }
 
 .close-button {
