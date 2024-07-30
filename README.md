@@ -35,34 +35,20 @@ POST /user/login --> login<br>
 POST /user/logout --> logout
 
 
-TO-DO (15.07.2024):
------------------------------------------
-- try to add bidding deadline
-- Add Team Member Images
-- Improve frontend design and UX
-
-
 PROGRESS:
 -----------------------------------------
-(07.07.2024):<br>
 - Created architecture as "server" and "frontend" inside main app folder.
 - SERVER is created (EXPRESS)
 - FRONTEND is created (REACT)
 - DATABASE is created on Mongodb Atlas Cloud
-- App is serving all and individual auction items as intended.<br>
-
-(14.07.2024):<br>
-- Implemented frontend with React<br>
-
-(15.07.2024):<br>
+- App is serving all and individual auction items as intended.
+- Implemented frontend with React
 - ADD Item / DELETE Item functionality is added
 - User model created
 - Registeration is implemented with password encryption
 - JWT is implemented to save session
 - cookie operations implemented to save authentication
-- all pages are showing different UI based on authhentication status and admin status<br>
-
-(16.07.2024):<br>
-- API endpoints are secured with authentication and authorization checks<br>
-- adding new bid procedure is implemented<br>
-- progress bar is implemented<br>
+- all pages are showing different UI based on authhentication status and admin status
+- API endpoints are secured with authentication and authorization checks
+- adding new bid procedure is implemented
+- progress bar is implemented
