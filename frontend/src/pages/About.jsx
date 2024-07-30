@@ -49,13 +49,13 @@ function About(props) {
             </div>
             <div className="team-member">
               <img src="/favicon-trans.png" alt="Alisha Buttar" className="team-photo" />
-              <h3>Alisha Buttar</h3>
+              <h3>Alisha Alisha </h3>
               <p>Alisha is our project manager, ensuring that all aspects of the auction process run smoothly. She is dedicated to supporting our mission.</p>
             </div>
             <div className="team-member">
               <img src="/favicon-trans.png" alt="Efe Awowede" className="team-photo" />
               <h3>Efe Awowede</h3>
-              <p>Efe is a designer with a keen eye for detail, responsible for the visual elements of the platform, ensuring an intuitive and engaging user interface.</p>
+              <p>Efe is a front end developer with a keen eye for detail, responsible for the visual elements of the platform, ensuring an intuitive and engaging user interface.</p>
             </div>
           </div>
         </div>
