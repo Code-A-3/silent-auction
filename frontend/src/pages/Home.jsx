@@ -63,8 +63,8 @@ function Home(props) {
 
     return (
         <>
-            <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck} total={total}/>
-            <main> {/* Add this wrapper */}
+            <Header fetchItems={fetchItems} setItems={setItems} auth={props.auth} admin={props.admin} runCheck={props.runCheck} total={total} items={items}/>
+            <main>
                 <AboutAuction auth={props.auth} total={total}/>
                 <div className='items-container'>
                     {items && items.map(item => (

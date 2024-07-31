@@ -46,9 +46,9 @@ function Item(props) {
                 <h2>{props.item.title}</h2>
                 <p><strong>Description:</strong> {props.item.description}</p>
                 {props.item.bidHistory[0] ? (
-                    <p><strong>Current Bid:</strong> ${props.item.bidHistory[0].amount}</p>
+                    <p><strong>Current Bid:</strong> ${props.item.bidHistory[0].amount.toLocaleString('en-US')}</p>
                 ) : (
-                    <p><strong>Minimum Bid:</strong> {props.item.minBid}</p>
+                    <p><strong>Minimum Bid:</strong> ${props.item.minBid.toLocaleString('en-US')}</p>
                 )}
             </div>
             <div className="card-actions">

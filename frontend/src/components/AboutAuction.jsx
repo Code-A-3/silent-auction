@@ -32,7 +32,7 @@ function AboutAuction(props) {
             ></div>
           </div>
           <p>
-            Progress: {currentProgress.toLocaleString('en-US')} $ / {goal.toLocaleString('en-US')} $
+            Progress: ${currentProgress.toLocaleString('en-US')} / ${goal.toLocaleString('en-US')}
           </p>
           {!props.auth && (
             <NavLink className="join-auction-button" to="/login">Login to Join Auction</NavLink>

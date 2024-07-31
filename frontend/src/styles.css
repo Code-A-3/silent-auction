@@ -94,6 +94,7 @@ a:focus-visible {
   margin-bottom: 2rem;
   transition: transform 0.3s ease;
   height: 100%;
+  /* padding-bottom: 1rem; */
 }
 
 .card:hover {
@@ -131,11 +132,13 @@ a:focus-visible {
 
 .card-actions {
   display: flex;
-
+  margin-top: auto;
+  transform: translateY(-1rem);
   text-align: center;
   justify-content: center;
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
+  justify-content: space-evenly;
 }
 
 .card-actions .bid-button {
@@ -164,7 +167,7 @@ a:focus-visible {
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   transition: background-color 0.3s ease;
 }
 
@@ -200,6 +203,10 @@ a:focus-visible {
   left: 50%;
   transform: translateX(-50%);
   margin: 0; */
+  /* margin-right: auto; */
+}
+
+.site-title-left {
   margin-right: auto;
 }
 
@@ -253,6 +260,27 @@ a:focus-visible {
   background-color: #e7a07f;
   display: flex;
   align-items: center;
+}
+
+.search-container{
+  margin-inline: auto;
+}
+
+.search-form > input {
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border: none;
+}
+
+.search-form > button {
+  transition: background-color 0.3s ease;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: none;
+}
+
+.search-form > button:hover {
+  background-color: #f4c6aa;
 }
 
 .hero {

@@ -33,7 +33,7 @@ function ItemForm() {
         };
         clearInputs();
         alert(`"${title}" is added to auction`);
-        return navigate('/');
+        return navigate('/items');
     }
 
     return (

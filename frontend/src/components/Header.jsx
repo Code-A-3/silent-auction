@@ -1,4 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import {useState} from 'react';
 import '../styles.css'; 
 
 function Header(props) {
@@ -20,17 +21,46 @@ function Header(props) {
         }
     };
 
+    const [search, setSearch] = useState('');
+
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        if(!search){
+            props.fetchItems();
+            return;
+        }
+        const searchResult = props.items.filter(item => item.title.toLowerCase().includes(search.toLowerCase()));
+        if(searchResult.length < 1){
+            setSearch('')
+            props.fetchItems();
+            return alert("No items found. Please search again.")
+        }
+        props.setItems(searchResult);
+        console.log(searchResult)
+        setSearch('')
+    }
+
     return (
         <header className="header-container">
             <NavLink to="/">
                 <img className="site-logo" src="/favicon-trans.png" alt="Site Logo" />
             </NavLink>
-            <h1 className="site-title">Silent Auction</h1>
+            {props.items ? <h1 className="site-title">Silent Auction</h1> : <h1 className="site-title-left">Silent Auction</h1>}
+            
+            {props.items && 
+                <div className="search-container">
+                    <form className='search-form' onSubmit={handleSearch}>
+                    <input
+                        type="text"
+                        id="search"
+                        value={search}
+                        placeholder='Search...'
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <button className="button" type="submit">Go</button>
+                    </form>
+            </div>}
             <nav className="header-links">
-                {/* {props.total && 
-                    <div className="totalSales">
-                    <h2>Total Bids: {props.total}</h2>
-                </div>} */}
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/items">Auction</NavLink>
                 {props.admin && <NavLink to="/add">Add Item</NavLink>}
