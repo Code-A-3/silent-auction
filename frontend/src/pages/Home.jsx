@@ -9,6 +9,8 @@ import Footer from '../components/Footer.jsx';
 function Home(props) {
     const [items, setItems] = useState(null);
     const [total, setTotal] = useState(0);
+    const [deadline, setDeadline] = useState(new Date());
+    const [target, setTarget] = useState(0);
 
     const fetchItems = async () => {
         await fetch('http://localhost:3000/items', {
@@ -18,6 +20,11 @@ function Home(props) {
             .then(response => response.json())
             .then(data => {
                 setItems(data);
+                const auctionData = data.find(obj => obj.title === 'auctiondata');
+                const objective = auctionData.minBid
+                const deadline = new Date(auctionData.description);
+                setTarget(objective);
+                setDeadline(deadline);
             })
             .catch(error => alert(error)
         );
@@ -65,11 +72,13 @@ function Home(props) {
         <>
             <Header fetchItems={fetchItems} setItems={setItems} auth={props.auth} admin={props.admin} runCheck={props.runCheck} total={total} items={items}/>
             <main>
-                <AboutAuction setTarget={props.setTarget} target={props.target} admin={props.admin} auth={props.auth} total={total}/>
+                <AboutAuction deadline={deadline} target={target} admin={props.admin} auth={props.auth} total={total}/>
                 <div className='items-container'>
-                    {items && items.map(item => (
-                        <Item key={item._id} item={item} onDelete={handleDelete} onBid={handleSendBid} auth={props.auth} admin={props.admin}/>
-                    ))}
+                    {items && items.map(item => {
+                        if (item.title != 'auctiondata'){
+                            return <Item key={item._id} item={item} onDelete={handleDelete} onBid={handleSendBid} auth={props.auth} admin={props.admin}/>
+                        }
+                    })}
                 </div>
             </main>
             <Footer />

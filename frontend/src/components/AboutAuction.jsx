@@ -5,11 +5,21 @@ function AboutAuction(props) {
   const currentProgress = props.total;
   let goal = props.target;
   const progressPercent = (currentProgress / goal) * 100;
+  
+  const timeRemaining = () => {
+    const deadline = props.deadline;
+    const now = new Date();
+    const difference = deadline - now;
+    console.log(difference);
+    const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((difference / (1000 * 60)) % 60);
+    return `${hours} hours, ${minutes} minutes`;
+  };
 
   return (
     <div>
       <div className="about-section">
-        <h2>Ongoing Auction</h2>
+        <h2 className="remaining-time">Time Remaining: {timeRemaining()}</h2>
         <p>
           Embark on a journey of generosity at our virtual Summer Charity Gala
           Silent Auction, hosted on the cutting-edge Silent Auction platform.
@@ -31,23 +41,6 @@ function AboutAuction(props) {
           <p>
             Progress: ${currentProgress.toLocaleString('en-US')} / ${goal.toLocaleString('en-US')}
           </p>
-          {props.admin && 
-            <div className="set-target-container">
-              <form className="mini-form">
-              <input
-                style={{ backgroundColor: "#f0f0f0" }}
-                type="number"
-                id="target"
-                placeholder='Set target...'
-              />
-            <button onClick={e => {
-              e.preventDefault();
-              const newGoal = document.getElementById("target").value;
-              props.setTarget(newGoal)
-            }} className="button" type="submit">Go</button>
-              </form>
-            </div>
-          }
           {!props.auth && (
             <NavLink className="join-auction-button" to="/login">Login to Join Auction</NavLink>
           )}

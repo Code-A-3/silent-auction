@@ -12,6 +12,7 @@ DETAILS:
 - All user can enter the site and see all the items in auction.
 - The auction items are recorded in Mongo database.
 - Users can do a search among items
+- The remaining time for finalization of the auction can be seen in items page
 - In order to bid in auction, user has to sign up / login
 - In order to add or delete items, user has to be ADMIN.
 - Admins can set the target value of the ongoing auction.
