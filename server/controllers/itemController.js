@@ -116,7 +116,7 @@ const addBid = async (req, res) => {
             return res.status(500).json({ error: 'Internal server error' });
         }
     } catch (error) {
-        return res.status(401).json({ error: 'Invalid token' });
+        return res.status(401).json({ error: 'Invalid token', token: token});
     }
 };
 
