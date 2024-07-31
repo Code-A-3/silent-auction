@@ -50,20 +50,32 @@ function App() {
 
 
   const handleSendBid = async (_id, bidAmount) => {
-    const details = {amount: bidAmount};
-    const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
-        method: "PUT",
-        body: JSON.stringify(details),
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include'
-    })
-    .catch(error => alert(error));
-    const responseJson = response.json();
-    console.log(responseJson);
-  }
-  
+    const details = { amount: bidAmount };
+    try {
+        const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
+            method: 'PUT',
+            body: JSON.stringify(details),
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            alert(`Error: ${errorData.error}`);
+            return;
+        }
+
+        const responseJson = await response.json();
+        console.log(responseJson);
+        alert('Bid successfully added.');
+    } catch (error) {
+        console.error('Error sending bid:', error);
+        alert('Error sending bid. Please try again.');
+    }
+};
+
   return (
     <BrowserRouter>
       <Routes>
