@@ -36,7 +36,7 @@ app.use(express.json());
 
 // To fix CORS issue
 const corsOptions = {
-    origin: ['https://silent-auction-api.vercel.app'], 
+    origin: ['https://silent-auction-frontend-pi.vercel.app'], 
     methods: ['post', 'get', 'put', 'delete'],
     credentials: true
 };
