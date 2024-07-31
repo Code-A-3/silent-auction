@@ -17,6 +17,7 @@ const loginUser = async (req,res) => {
         const token = createToken(user._id, user.userName, admin);
         const expireDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
         res.cookie('token', token, { 
+            domain: 'https://silent-auction-api.vercel.app',
             httpOnly: true,
             // secure: process.env.NODE_ENV === 'production', 
             secure: true, 

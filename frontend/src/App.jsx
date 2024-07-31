@@ -44,7 +44,7 @@ function App() {
       //   throw new Error('Network response was not ok');
       // }
 
-      alert(response)
+      console.log(response)
   
       const data = await response.json();
   
