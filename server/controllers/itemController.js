@@ -74,7 +74,18 @@ const createItem = async (req,res)=>{
 const addBid = async (req,res)=>{
     await requireAuth(req,res);
     const {id} = req.params;
-    const {user, amount} = req.body;
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json('No Token');
+    }
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        user = decoded.userName;
+    } catch (error) {
+        res.status(401).json(error);
+    }
+    const {amount} = req.body;
+
     if (!id || !user || !amount || isNaN(amount)) {
         return res.status(400).json({error: 'Some needed data is not provided or not proper'});
     }
