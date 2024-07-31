@@ -65,7 +65,7 @@ function Home(props) {
         <>
             <Header fetchItems={fetchItems} setItems={setItems} auth={props.auth} admin={props.admin} runCheck={props.runCheck} total={total} items={items}/>
             <main>
-                <AboutAuction auth={props.auth} total={total}/>
+                <AboutAuction setTarget={props.setTarget} target={props.target} admin={props.admin} auth={props.auth} total={total}/>
                 <div className='items-container'>
                     {items && items.map(item => (
                         <Item key={item._id} item={item} onDelete={handleDelete} onBid={handleSendBid} auth={props.auth} admin={props.admin}/>

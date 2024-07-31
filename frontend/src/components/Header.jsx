@@ -49,7 +49,7 @@ function Header(props) {
             
             {props.items && 
                 <div className="search-container">
-                    <form className='search-form' onSubmit={handleSearch}>
+                    <form className='mini-form' onSubmit={handleSearch}>
                     <input
                         type="text"
                         id="search"

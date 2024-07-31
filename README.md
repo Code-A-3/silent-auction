@@ -11,8 +11,10 @@ DETAILS:
 -----------------------------------------
 - All user can enter the site and see all the items in auction.
 - The auction items are recorded in Mongo database.
+- Users can do a search among items
 - In order to bid in auction, user has to sign up / login
 - In order to add or delete items, user has to be ADMIN.
+- Admins can set the target value of the ongoing auction.
 - Backend has various controls and validation for sign up and login procedures
 - When a logged in user bids, backend checks if the bid is proper or not (bigger than last bid etc...). If confirmed, the new bid will be registered to the bidding history of that specific item.
 - When an admin creates a new auction item, backend controls all the input fields and adds the item if all fields are proper.

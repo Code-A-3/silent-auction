@@ -3,14 +3,11 @@ import { NavLink } from "react-router-dom"; // Import NavLink for routing if nee
 
 function AboutAuction(props) {
   const currentProgress = props.total;
-  const goal = 5000;
+  let goal = props.target;
   const progressPercent = (currentProgress / goal) * 100;
 
   return (
     <div>
-      {/* <div className="hero">
-        <img src="\hero_image_2.jpeg" alt="Auction Event" />
-      </div> */}
       <div className="about-section">
         <h2>Ongoing Auction</h2>
         <p>
@@ -34,6 +31,23 @@ function AboutAuction(props) {
           <p>
             Progress: ${currentProgress.toLocaleString('en-US')} / ${goal.toLocaleString('en-US')}
           </p>
+          {props.admin && 
+            <div className="set-target-container">
+              <form className="mini-form">
+              <input
+                style={{ backgroundColor: "#f0f0f0" }}
+                type="number"
+                id="target"
+                placeholder='Set target...'
+              />
+            <button onClick={e => {
+              e.preventDefault();
+              const newGoal = document.getElementById("target").value;
+              props.setTarget(newGoal)
+            }} className="button" type="submit">Go</button>
+              </form>
+            </div>
+          }
           {!props.auth && (
             <NavLink className="join-auction-button" to="/login">Login to Join Auction</NavLink>
           )}

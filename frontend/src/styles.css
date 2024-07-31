@@ -258,20 +258,20 @@ a:focus-visible {
   margin-inline: auto;
 }
 
-.search-form > input {
+.mini-form > input {
   border-top-left-radius: 6px;
   border-bottom-left-radius: 6px;
   border: none;
 }
 
-.search-form > button {
+.mini-form > button {
   transition: background-color 0.3s ease;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
   border: none;
 }
 
-.search-form > button:hover {
+.mini-form > button:hover {
   background-color: #f4c6aa;
 }
 
