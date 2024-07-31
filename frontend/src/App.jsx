@@ -50,28 +50,23 @@ function App() {
 
 
   const handleSendBid = async (_id, bidAmount) => {
-    const token = Cookies.get('token');
-    if (token) {
-      try {
-          const details = {amount: bidAmount};
-          const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
-              method: "PUT",
-              body: JSON.stringify(details),
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              credentials: 'include'
-          })
-          const responseJson = await response.json();
-          console.log(responseJson);
-          if (!response.ok) {
-              return alert(responseJson.error);
-          }
-      } catch (error) {
-          alert(error.message);
+    const details = {amount: bidAmount};
+    const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
+        method: "PUT",
+        body: JSON.stringify(details),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include'
+    })
+    .then(response=>{
+      const responseJson = await response.json();
+      if (!response.ok) {
+          return alert(responseJson.error);
       }
-    }
-  }
+    })
+    .catch(error => alert(error)
+  );
 
   return (
     <BrowserRouter>
