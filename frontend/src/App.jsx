@@ -62,8 +62,8 @@ function App() {
     .catch(error => alert(error));
     const responseJson = response.json();
     console.log(responseJson);
-
   }
+  
   return (
     <BrowserRouter>
       <Routes>
