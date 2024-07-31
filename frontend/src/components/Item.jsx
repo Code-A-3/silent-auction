@@ -10,7 +10,7 @@ function Item(props) {
     const navigate = useNavigate();
 
 
-    _id = props.item._id;
+    const _id = props.item._id;
     const handleSendBid = async (_id) => {
         const details = {amount: 345};
         const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
