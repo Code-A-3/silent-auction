@@ -8,11 +8,11 @@ function AboutAuction(props) {
 
   return (
     <div>
-      <div className="hero">
-        <img src="\hero_image.jpeg" alt="Auction Event" />
-      </div>
+      {/* <div className="hero">
+        <img src="\hero_image_2.jpeg" alt="Auction Event" />
+      </div> */}
       <div className="about-section">
-        <h2>About this Auction</h2>
+        <h2>Ongoing Auction</h2>
         <p>
           Embark on a journey of generosity at our virtual Summer Charity Gala
           Silent Auction, hosted on the cutting-edge Silent Auction platform.
@@ -32,7 +32,7 @@ function AboutAuction(props) {
             ></div>
           </div>
           <p>
-            Progress: {currentProgress} / {goal}
+            Progress: {currentProgress.toLocaleString('en-US')} $ / {goal.toLocaleString('en-US')} $
           </p>
           {!props.auth && (
             <NavLink className="join-auction-button" to="/login">Login to Join Auction</NavLink>

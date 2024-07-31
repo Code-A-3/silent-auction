@@ -63,7 +63,7 @@ function Home(props) {
 
     return (
         <>
-            <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck}/>
+            <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck} total={total}/>
             <main> {/* Add this wrapper */}
                 <AboutAuction auth={props.auth} total={total}/>
                 <div className='items-container'>

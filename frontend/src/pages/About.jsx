@@ -7,7 +7,7 @@ function About(props) {
     <>
       <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck} />
       <div className="hero">
-        <img src="\hero_image.jpeg" alt="Auction Event" />
+        <img src="\hero_image_2.jpeg" alt="Auction Event" />
       </div>
       <div className="about-container">
         <div className="about-section">
@@ -43,17 +43,17 @@ function About(props) {
           <h2>Our Team</h2>
           <div className="team-members">
             <div className="team-member">
-              <img src="/favicon-trans.png" alt="Arda Kafali" className="team-photo" />
+              <img src="/technical.jpg" alt="Arda Kafali" className="team-photo" />
               <h3>Arda Kafali</h3>
               <p>Arda is a software developer with a passion for creating seamless user experiences. He oversees the technical development of the platform.</p>
             </div>
             <div className="team-member">
-              <img src="/favicon-trans.png" alt="Alisha Buttar" className="team-photo" />
+              <img src="/management.jpg" alt="Alisha Buttar" className="team-photo" />
               <h3>Alisha Alisha </h3>
               <p>Alisha is our project manager, ensuring that all aspects of the auction process run smoothly. She is dedicated to supporting our mission.</p>
             </div>
             <div className="team-member">
-              <img src="/favicon-trans.png" alt="Efe Awowede" className="team-photo" />
+              <img src="/frontend.png" alt="Efe Awowede" className="team-photo" />
               <h3>Efe Awowede</h3>
               <p>Efe is a front end developer with a keen eye for detail, responsible for the visual elements of the platform, ensuring an intuitive and engaging user interface.</p>
             </div>

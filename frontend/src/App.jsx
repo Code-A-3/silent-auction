@@ -67,7 +67,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home auth={auth} admin={admin} runCheck={checkToken} onBid={handleSendBid} />} />
+        <Route path='/' element={<Navigate to="/about" />} />
+        <Route path='/items' element={<Home auth={auth} admin={admin} runCheck={checkToken} onBid={handleSendBid} />} />
         <Route path='/login' element={<Login auth={auth} admin={admin} runCheck={checkToken} />} />
         <Route path='/register' element={<Register auth={auth} admin={admin} runCheck={checkToken} />} />
         <Route path='/about' element={<About auth={auth} admin={admin} runCheck={checkToken} />} />

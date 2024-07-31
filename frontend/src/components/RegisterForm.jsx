@@ -30,7 +30,7 @@ function RegisterForm(props) {
         clearInputs();
         alert(`"${userJson.userName}" is successfully registered.`);
         await props.runCheck();
-        return navigate('/');
+        return navigate('/items');
     }
 
     return (

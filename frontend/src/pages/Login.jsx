@@ -10,7 +10,7 @@ function Login(props) {
     <>
       <Header auth={props.auth} admin={props.admin} runCheck={props.runCheck} />
       <div className="hero">
-        <img src="\hero_image.jpeg" alt="Auction Event" />
+        <img src="\hero_image_2.jpeg" alt="Auction Event" />
       </div>
       <LoginForm runCheck={props.runCheck}/>
       <Footer />

@@ -32,7 +32,7 @@ function LoginForm(props) {
             return alert(userJson.error);
         };
         await props.runCheck();
-        return navigate('/');
+        return navigate('/items');
     }
 
     return (
