@@ -62,9 +62,12 @@ function Header(props) {
             <nav className="header-links">
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/items">Auction</NavLink>
-                <NavLink to="/add">Add Item</NavLink>
-                
+                {props.admin && <NavLink to="/add">Add Item</NavLink>}
                 {!props.auth ? <NavLink to="/login">Login</NavLink> : <button className='logout-button' onClick={handleLogout}>Logout</button>}
+                
+                <NavLink to="/add">Add Item</NavLink>
+                <button className='logout-button' onClick={handleLogout}>Logout</button>
+            
             </nav>
         </header>
     );
