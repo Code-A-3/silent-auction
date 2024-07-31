@@ -64,4 +64,19 @@ const logoutUser = (req,res)=>{
     res.status(200).json({message: "Logged out..."});
 }
 
-export {loginUser, registerUser, logoutUser};
+//Check Cookie
+const checkCookie = (req,res)=>{
+    const token = req.cookies.token;
+    if (!token) {
+        return res.status(401).json({ auth: false, admin: false });
+    }
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        res.json({ auth: true, admin: decoded.admin });
+    } catch (error) {
+        res.status(401).json({ auth: false, admin: false });
+    }
+}
+
+export {loginUser, registerUser, logoutUser, checkCookie};
+

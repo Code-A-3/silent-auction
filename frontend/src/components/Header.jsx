@@ -64,10 +64,6 @@ function Header(props) {
                 <NavLink to="/items">Auction</NavLink>
                 {props.admin && <NavLink to="/add">Add Item</NavLink>}
                 {!props.auth ? <NavLink to="/login">Login</NavLink> : <button className='logout-button' onClick={handleLogout}>Logout</button>}
-                
-                <NavLink to="/add">Add Item</NavLink>
-                <button className='logout-button' onClick={handleLogout}>Logout</button>
-            
             </nav>
         </header>
     );

@@ -16,22 +16,46 @@ function App() {
   const [auth, setAuth] = useState(false);
   const [admin, setAdmin] = useState(false);
 
-  const checkToken = ()=>{
-    const token = Cookies.get('token');
-    if (token) {
-      setAuth(true);
-      try {
-        const decoded = jwtDecode(token);
-        setAdmin(decoded.admin);
-      } catch (error) {
-        alert('Something went wrong with the session data!');
+  // const checkToken = ()=>{
+  //   const token = Cookies.get('token');
+  //   if (token) {
+  //     setAuth(true);
+  //     try {
+  //       const decoded = jwtDecode(token);
+  //       setAdmin(decoded.admin);
+  //     } catch (error) {
+  //       alert('Something went wrong with the session data!');
+  //     }
+  //   }
+  //   else {
+  //     setAuth(false);
+  //     setAdmin(false);
+  //   }
+  // };
+
+  const checkToken = async () => {
+    try {
+      const response = await axios.get('/user/check-token', {
+        withCredentials: true // This ensures cookies are sent with the request
+      });
+      if (response.data.auth) {
+        setAuth(true);
+        setAdmin(response.data.admin);
+      } else {
+        setAuth(false);
+        setAdmin(false);
       }
-    }
-    else {
+    } catch (error) {
+      alert('Something went wrong with the session data!');
       setAuth(false);
       setAdmin(false);
     }
   };
+
+  useEffect(() => {
+    checkToken();
+  }, []);
+
 
   const handleSendBid = async (_id, bidAmount) => {
     const token = Cookies.get('token');
@@ -57,10 +81,6 @@ function App() {
       }
     }
   }
-
-  useEffect(()=>{
-    checkToken();
-  }, []);
 
   return (
     <BrowserRouter>
