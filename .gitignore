@@ -24,6 +24,6 @@ lerna-debug.log*
 # Node modules
 node_modules/
 
-dist
+# dist
 dist-ssr
 *.local
