@@ -16,23 +16,6 @@ function App() {
   const [auth, setAuth] = useState(false);
   const [admin, setAdmin] = useState(false);
 
-  // const checkToken = ()=>{
-  //   const token = Cookies.get('token');
-  //   if (token) {
-  //     setAuth(true);
-  //     try {
-  //       const decoded = jwtDecode(token);
-  //       setAdmin(decoded.admin);
-  //     } catch (error) {
-  //       alert('Something went wrong with the session data!');
-  //     }
-  //   }
-  //   else {
-  //     setAuth(false);
-  //     setAdmin(false);
-  //   }
-  // };
-
   const checkToken = async () => {
     try {
       const response = await fetch('https://silent-auction-api.vercel.app/user/check-token', {
@@ -41,6 +24,7 @@ function App() {
       });
   
       if (!response.ok) {
+        console.log(response.json())
         throw new Error('Network response was not ok');
       }
       
