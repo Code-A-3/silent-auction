@@ -59,15 +59,11 @@ function App() {
         },
         credentials: 'include'
     })
-    .then(response=>{
-      const responseJson = await response.json();
-      if (!response.ok) {
-          return alert(responseJson.error);
-      }
-    })
-    .catch(error => alert(error)
-  );
-
+    const responseJson = await response.json();
+    if (!response.ok) {
+        return alert(responseJson.error);
+    }
+  }
   return (
     <BrowserRouter>
       <Routes>
