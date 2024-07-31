@@ -56,7 +56,7 @@ function App() {
         setAdmin(false);
       }
     } catch (error) {
-      alert(error.message);
+      console.log(error)
       setAuth(false);
       setAdmin(false);
     }
