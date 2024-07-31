@@ -1,6 +1,7 @@
 import ItemModel from '../models/itemModel.js';
 import requireAuth from '../middlewares/reqAuth.js';
 import requireAdmin from '../middlewares/reqAdmin.js';
+import jwt from 'jsonwebtoken';
 
 // Get all items
 const getItems = async (req,res)=>{
@@ -115,7 +116,6 @@ const addBid = async (req, res) => {
             return res.status(500).json({ error: 'Internal server error' });
         }
     } catch (error) {
-        console.error('Error verifying token:', error);
         return res.status(401).json({ error: 'Invalid token' });
     }
 };
