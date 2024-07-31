@@ -75,7 +75,7 @@ const addBid = async (req,res)=>{
     const {id} = req.params;
     const token = req.cookies.token;
     if (!token) {
-        return res.status(401).json('No Token');
+        return res.status(401).json({error: 'No token'});
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -100,7 +100,6 @@ const addBid = async (req,res)=>{
             if (error.name == 'CastError') {
                 return res.status(404).json({error: 'Item not found'});
             }
-            console.log('5');
             res.status(400).json({error: `Error fetching item: ${error.message}`});
         }
         const bid = {amount: amount, bidder: user}
@@ -117,7 +116,7 @@ const addBid = async (req,res)=>{
             res.status(400).json({error: `Error deleting item: ${error.message}`});
         }
     } catch (error) {
-        res.status(401).json(error);
+        res.status(401).json({error: `Catch error: ${error}`});
     }
     
 }
