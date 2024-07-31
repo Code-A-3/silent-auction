@@ -35,18 +35,16 @@ function App() {
 
   const checkToken = async () => {
     try {
-      const response = await fetch('/user/check-token', {
+      const response = await fetch('https://silent-auction-api.vercel.app/user/check-token', {
         method: 'GET',
         credentials: 'include' // This ensures cookies are sent with the request
       });
   
-      // if (!response.ok) {
-      //   throw new Error('Network response was not ok');
-      // }
-
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
       
       const data = await response.json();
-      console.log(data)
   
       if (data.auth) {
         setAuth(true);
