@@ -28,6 +28,12 @@ mongoose.connect(`mongodb+srv://${process.env.MONGO_DB_USER}:${process.env.MONGO
 
 // MIDDLEWARES
 
+// To read cookies
+app.use(cookieParser());
+
+// To read the request body
+app.use(express.json());
+
 // To fix CORS issue
 const corsOptions = {
     origin: ['https://silent-auction-frontend-pi.vercel.app'], 
@@ -43,17 +49,6 @@ app.use((req, res, next) => {
     next();
 })
 
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '..', 'frontend', 'dist')));
-
-
-// To read cookies
-app.use(cookieParser());
-
-// To read the request body
-app.use(express.json());
-
-
 // A basic logger
 // app.use((req, res, next)=>{
 //     console.log(`New Request: Path= "${req.path}", Method= ${req.method}`);
@@ -66,9 +61,6 @@ app.use('/items', itemsRouter);
 app.use('/user', userRouter);
 app.get('/', (req, res)=>{
     res.redirect('/items');
-});
-app.get('*', (req, res) => {
-    res.send("404...");
 });
 
 

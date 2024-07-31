@@ -20,8 +20,8 @@ const loginUser = async (req,res) => {
             httpOnly: false,
             // secure: process.env.NODE_ENV === 'production', 
             secure: true, 
-            // sameSite: 'Strict',
-            sameSite: 'None',
+            sameSite: 'Strict',
+            // sameSite: 'None',
             expires: expireDate
         });
         res.status(200).json({userName});
@@ -42,8 +42,8 @@ const registerUser = async (req,res) => {
             httpOnly: false, 
             // secure: process.env.NODE_ENV === 'production', 
             secure: true, 
-            // sameSite: 'Strict',
-            sameSite: 'None',
+            sameSite: 'Strict',
+            // sameSite: 'None',
             expires: expireDate
         });
         res.status(200).json({userName});
@@ -58,8 +58,8 @@ const logoutUser = (req,res)=>{
         httpOnly: false, 
         // secure: process.env.NODE_ENV === 'production', 
         secure: true, 
-        // sameSite: 'Strict',
-        sameSite: 'None',
+        sameSite: 'Strict',
+        // sameSite: 'None',
     });
     res.status(200).json({message: "Logged out..."});
 }
