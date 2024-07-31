@@ -72,7 +72,6 @@ const createItem = async (req,res)=>{
 
 // Add new bid to an item
 const addBid = async (req,res)=>{
-    await requireAuth(req,res);
     const {id} = req.params;
     const token = req.cookies.token;
     if (!token) {
@@ -81,45 +80,46 @@ const addBid = async (req,res)=>{
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         user = decoded.userName;
+        const {amount} = req.body;
+    
+        if (!id || !user || !amount || isNaN(amount)) {
+            return res.status(400).json({error: 'Some needed data is not provided or not proper'});
+        }
+        try {
+            const item = await ItemModel.findById(id);
+            if (!item){
+                return res.status(404).json({error: 'Item not found'});
+            }
+            if (item.bidHistory.length > 0 && amount <= item.bidHistory[0].amount){
+                return res.status(400).json({error: `You should bid higher than the last bid: ${item.bidHistory[0].amount}`});
+            }
+            if (amount < item.minBid){
+                return res.status(400).json({error: `You should bid at least the minimum bid: ${item.minBid}`});
+            }
+        } catch (error) {
+            if (error.name == 'CastError') {
+                return res.status(404).json({error: 'Item not found'});
+            }
+            console.log('5');
+            res.status(400).json({error: `Error fetching item: ${error.message}`});
+        }
+        const bid = {amount: amount, bidder: user}
+        try {
+            await ItemModel.findByIdAndUpdate(
+                id, 
+                {$push: {bidHistory: {$each:[bid], $position: 0}}}
+            )
+            res.status(200).json({message: 'Bid added.'});
+        } catch (error) {
+            if (error.name == 'CastError') {
+                return res.status(404).json({error: 'Item not found'});
+            }
+            res.status(400).json({error: `Error deleting item: ${error.message}`});
+        }
     } catch (error) {
         res.status(401).json(error);
     }
-    const {amount} = req.body;
-
-    if (!id || !user || !amount || isNaN(amount)) {
-        return res.status(400).json({error: 'Some needed data is not provided or not proper'});
-    }
-    try {
-        const item = await ItemModel.findById(id);
-        if (!item){
-            return res.status(404).json({error: 'Item not found'});
-        }
-        if (item.bidHistory.length > 0 && amount <= item.bidHistory[0].amount){
-            return res.status(400).json({error: `You should bid higher than the last bid: ${item.bidHistory[0].amount}`});
-        }
-        if (amount < item.minBid){
-            return res.status(400).json({error: `You should bid at least the minimum bid: ${item.minBid}`});
-        }
-    } catch (error) {
-        if (error.name == 'CastError') {
-            return res.status(404).json({error: 'Item not found'});
-        }
-        console.log('5');
-        res.status(400).json({error: `Error fetching item: ${error.message}`});
-    }
-    const bid = {amount: amount, bidder: user}
-    try {
-        await ItemModel.findByIdAndUpdate(
-            id, 
-            {$push: {bidHistory: {$each:[bid], $position: 0}}}
-        )
-        res.status(200).json({message: 'Bid added.'});
-    } catch (error) {
-        if (error.name == 'CastError') {
-            return res.status(404).json({error: 'Item not found'});
-        }
-        res.status(400).json({error: `Error deleting item: ${error.message}`});
-    }
+    
 }
 
 // Delete item
