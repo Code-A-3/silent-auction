@@ -44,7 +44,6 @@ function App() {
               method: "PUT",
               body: JSON.stringify(details),
               headers: {
-                "Access-Control-Allow-Origin": "*",
                 'Content-Type': 'application/json'
               },
               credentials: 'include'
