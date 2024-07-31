@@ -51,7 +51,7 @@ function App() {
 
   const handleSendBid = async (_id, bidAmount) => {
     const details = {amount: bidAmount};
-    const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
+    await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
         method: "PUT",
         body: JSON.stringify(details),
         headers: {
@@ -59,10 +59,12 @@ function App() {
         },
         credentials: 'include'
     })
-    const responseJson = await response.json();
-    if (!response.ok) {
-        return alert(responseJson.error);
-    }
+    .then(response = response.json())
+    .then(data => {
+      console.log(data)
+    })
+    .catch(error => alert(error));
+
   }
   return (
     <BrowserRouter>
