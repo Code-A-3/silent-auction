@@ -40,9 +40,11 @@ function App() {
         credentials: 'include' // This ensures cookies are sent with the request
       });
   
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+      // if (!response.ok) {
+      //   throw new Error('Network response was not ok');
+      // }
+
+      alert(response)
   
       const data = await response.json();
   
