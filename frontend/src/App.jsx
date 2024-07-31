@@ -69,8 +69,6 @@ function App() {
     const token = Cookies.get('token');
     if (token) {
       try {
-          // const decoded = jwtDecode(token);
-          // const activeUser = decoded.userName;
           const details = {amount: bidAmount};
           const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
               method: "PUT",
@@ -81,6 +79,7 @@ function App() {
               credentials: 'include'
           })
           const responseJson = await response.json();
+          console.log(responseJson);
           if (!response.ok) {
               return alert(responseJson.error);
           }
