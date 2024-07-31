@@ -36,18 +36,17 @@ app.use(express.json());
 
 // To fix CORS issue
 const corsOptions = {
-    origin: ['https://silent-auction-frontend-pi.vercel.app'], 
-    methods: ['post', 'get', 'put', 'delete'],
+    origin: ['https://silent-auction-frontend-pi.vercel.app/'], 
     credentials: true
 };
 app.use(cors(corsOptions));
-// app.use(cors());
+
 
 // A basic logger
-app.use((req, res, next)=>{
-    console.log(`New Request: Path= "${req.path}", Method= ${req.method}`);
-    next();
-});
+// app.use((req, res, next)=>{
+//     console.log(`New Request: Path= "${req.path}", Method= ${req.method}`);
+//     next();
+// });
 
 
 // ROUTES
