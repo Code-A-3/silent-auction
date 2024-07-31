@@ -68,12 +68,14 @@ const logoutUser = (req,res)=>{
 const checkCookie = (req,res)=>{
     const token = req.cookies.token;
     if (!token) {
+        console.log('no token');
         return res.status(401).json({ auth: false, admin: false });
     }
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         res.json({ auth: true, admin: decoded.admin });
     } catch (error) {
+        console.log(error);
         res.status(401).json({ auth: false, admin: false });
     }
 }

@@ -46,7 +46,7 @@ function App() {
         setAdmin(false);
       }
     } catch (error) {
-      alert('Something went wrong with the session data!');
+      alert(error.message);
       setAuth(false);
       setAdmin(false);
     }
