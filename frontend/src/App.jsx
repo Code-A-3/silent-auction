@@ -35,12 +35,20 @@ function App() {
 
   const checkToken = async () => {
     try {
-      const response = await axios.get('/user/check-token', {
-        withCredentials: true // This ensures cookies are sent with the request
+      const response = await fetch('/user/check-token', {
+        method: 'GET',
+        credentials: 'include' // This ensures cookies are sent with the request
       });
-      if (response.data.auth) {
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+  
+      if (data.auth) {
         setAuth(true);
-        setAdmin(response.data.admin);
+        setAdmin(data.admin);
       } else {
         setAuth(false);
         setAdmin(false);
