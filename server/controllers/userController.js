@@ -17,11 +17,11 @@ const loginUser = async (req,res) => {
         const token = createToken(user._id, user.userName, admin);
         const expireDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
         res.cookie('token', token, { 
-            httpOnly: false,
+            httpOnly: true,
             // secure: process.env.NODE_ENV === 'production', 
             secure: true, 
-            sameSite: 'Strict',
-            // sameSite: 'None',
+            // sameSite: 'Strict',
+            sameSite: 'None',
             expires: expireDate
         });
         res.status(200).json({userName});
@@ -39,11 +39,11 @@ const registerUser = async (req,res) => {
         const token = createToken(user._id, user.userName, admin);
         const expireDate = new Date(Date.now() + 24 * 60 * 60 * 1000);
         res.cookie('token', token, { 
-            httpOnly: false, 
+            httpOnly: true, 
             // secure: process.env.NODE_ENV === 'production', 
             secure: true, 
-            sameSite: 'Strict',
-            // sameSite: 'None',
+            // sameSite: 'Strict',
+            sameSite: 'None',
             expires: expireDate
         });
         res.status(200).json({userName});
@@ -55,11 +55,11 @@ const registerUser = async (req,res) => {
 // Logout user
 const logoutUser = (req,res)=>{
     res.clearCookie('token', {
-        httpOnly: false, 
+        httpOnly: true, 
         // secure: process.env.NODE_ENV === 'production', 
         secure: true, 
-        sameSite: 'Strict',
-        // sameSite: 'None',
+        // sameSite: 'Strict',
+        sameSite: 'None',
     });
     res.status(200).json({message: "Logged out..."});
 }
