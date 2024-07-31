@@ -198,14 +198,6 @@ a:focus-visible {
   height: 4rem;
 }
 
-.site-title {
-  /* position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0; */
-  /* margin-right: auto; */
-}
-
 .site-title-left {
   margin-right: auto;
 }
