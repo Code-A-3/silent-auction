@@ -18,7 +18,8 @@ function RegisterForm(props) {
           method: 'POST',
             body: JSON.stringify(credentials),
             headers: {
-                'Content-Type': 'application/json'
+              "Access-Control-Allow-Origin": "*",
+              'Content-Type': 'application/json'
             },
             credentials: 'include' // important for receiving cookie fur to cors issues...
         })

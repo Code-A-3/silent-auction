@@ -22,7 +22,8 @@ function ItemForm() {
             method: 'POST',
             body: JSON.stringify(tempItem),
             headers: {
-                'Content-Type': 'application/json'
+              "Access-Control-Allow-Origin": "*",
+              'Content-Type': 'application/json'
             },
             credentials: 'include'
         })
