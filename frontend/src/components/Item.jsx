@@ -10,26 +10,6 @@ function Item(props) {
     const navigate = useNavigate();
 
 
-    const handleSendBid = async () => {
-        const _id = props.item._id;
-        const details = {amount: 345};
-        const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
-            method: "PUT",
-            body: JSON.stringify(details),
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-        .catch(error => alert(error));
-        const responseJson = response.json();
-        console.log(responseJson);
-      };
-      
-      
-      
-      
-
     const handleShowBidMenu = () => {
         setShowBidMenu(true);
     }
@@ -50,12 +30,12 @@ function Item(props) {
         props.onDelete(props.item._id, props.item.title);
     }
 
-    // const handleSendBid = (e) => {
-    //     e.preventDefault();
-    //     props.onBid(props.item._id, newBid);
-    //     handleCloseBidMenu();
-    //     setNewBid(props.item.bidHistory[0] ? (props.item.bidHistory[0].amount + 1) : props.item.minBid)
-    // }
+    const handleSendBid = (e) => {
+        e.preventDefault();
+        props.onBid(props.item._id, newBid);
+        handleCloseBidMenu();
+        setNewBid(props.item.bidHistory[0] ? (props.item.bidHistory[0].amount + 1) : props.item.minBid)
+    }
 
     return (
         <div className="card">
