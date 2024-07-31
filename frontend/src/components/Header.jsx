@@ -8,7 +8,7 @@ function Header(props) {
 
     const handleLogout = async ()=>{
         try {
-            const response = await fetch('http://localhost:3000/user/logout', {
+            const response = await fetch('https://silent-auction-api.vercel.app/user/logout', {
                 method: 'POST',
                 credentials: 'include'
             });

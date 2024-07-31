@@ -14,7 +14,7 @@ function RegisterForm(props) {
             setPassword('');
         }
         const credentials = {userName, password};
-        const user = await fetch('http://localhost:3000/user/register', {
+        const user = await fetch('https://silent-auction-api.vercel.app/user/register', {
           method: 'POST',
             body: JSON.stringify(credentials),
             headers: {

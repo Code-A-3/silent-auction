@@ -13,7 +13,7 @@ function Home(props) {
     const [target, setTarget] = useState(0);
 
     const fetchItems = async () => {
-        await fetch('http://localhost:3000/items', {
+        await fetch('https://silent-auction-api.vercel.app/items', {
             method: 'GET',
             credentials: 'include'
             })
@@ -56,7 +56,7 @@ function Home(props) {
     };
 
     const handleDelete = async (itemId, itemTitle) => {
-        const response = await fetch('http://localhost:3000/items/' + itemId, {
+        const response = await fetch('https://silent-auction-api.vercel.app/items/' + itemId, {
             method: "DELETE",
             credentials: 'include'
         })

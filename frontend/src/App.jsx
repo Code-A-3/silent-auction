@@ -41,7 +41,7 @@ function App() {
           const decoded = jwtDecode(token);
           const activeUser = decoded.userName;
           const details = {user: activeUser, amount: bidAmount};
-          const response = await fetch('http://localhost:3000/items/' + _id, {
+          const response = await fetch('https://silent-auction-api.vercel.app/items/' + _id, {
               method: "PUT",
               body: JSON.stringify(details),
               headers: {
