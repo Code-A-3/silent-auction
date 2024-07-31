@@ -36,7 +36,6 @@ function Header(props) {
             return alert("No items found. Please search again.")
         }
         props.setItems(searchResult);
-        console.log(searchResult)
         setSearch('')
     }
 

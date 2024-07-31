@@ -35,7 +35,6 @@ function App() {
 
   const handleSendBid = async (_id, bidAmount) => {
     const token = Cookies.get('token');
-    console.log(token);
     if (token) {
       try {
           const decoded = jwtDecode(token);
