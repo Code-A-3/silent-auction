@@ -38,16 +38,17 @@ app.use(express.json());
 const corsOptions = {
     origin: ['https://silent-auction-frontend-pi.vercel.app'], 
     methods: ['GET','HEAD','PUT','PATCH','POST','DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 };
 app.use(cors(corsOptions));
 
-app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "https://silent-auction-frontend-pi.vercel.app");
-    res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-    next();
-})
+// app.use((req, res, next) => {
+//     res.setHeader("Access-Control-Allow-Origin", "https://silent-auction-frontend-pi.vercel.app");
+//     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
+//     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+//     next();
+// })
 
 // A basic logger
 // app.use((req, res, next)=>{
